@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: webserver
+  name: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: webserver
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        run: webserver
+    spec:
+      containers:
+      - image: amitmohleji/webserver:1.0
+        name: webserver
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webservice
+spec:
+  type: LoadBalancer
+  selector:
+    run: webserver
+  ports:
+    - port: 80
+      targetPort: 80

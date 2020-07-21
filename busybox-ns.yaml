@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+  namespace: secret
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: busybox
+  template:
+    metadata:
+      labels:
+        run: busybox
+    spec:
+      containers:
+      - image: busybox
+        name: busybox
+        command:
+          - sleep
+          - "3600"

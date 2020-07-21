@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-ex
+spec:
+  initContainers:
+    - name: sleepy
+      image: alpine
+      command:
+        - sleep
+        - "100"
+  containers:
+    - name: nginx
+      image: nginx
